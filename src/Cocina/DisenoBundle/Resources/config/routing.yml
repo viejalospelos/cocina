@@ -1,0 +1,3 @@
+diseno_homepage:
+    path:     /
+    defaults: { _controller: DisenoBundle:Default:index }

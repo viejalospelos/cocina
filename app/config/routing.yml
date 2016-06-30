@@ -1,0 +1,27 @@
+calidad:
+    resource: "@CalidadBundle/Resources/config/routing.yml"
+    prefix:   /
+
+usuario:
+    resource: "@UsuarioBundle/Resources/config/routing.yml"
+    prefix:   /
+
+nutricion:
+    resource: "@NutricionBundle/Resources/config/routing.yml"
+    prefix:   /
+
+trazabilidad:
+    resource: "@TrazabilidadBundle/Resources/config/routing.yml"
+    prefix:   /
+
+diseno:
+    resource: "@DisenoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+compras:
+    resource: "@ComprasBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

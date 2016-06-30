@@ -1,0 +1,3 @@
+calidad_homepage:
+    path:     /
+    defaults: { _controller: CalidadBundle:Default:index }

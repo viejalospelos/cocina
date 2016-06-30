@@ -1,0 +1,3 @@
+trazabilidad_homepage:
+    path:     /
+    defaults: { _controller: TrazabilidadBundle:Default:index }
