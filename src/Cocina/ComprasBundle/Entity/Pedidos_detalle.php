@@ -63,7 +63,6 @@ class Pedidos_detalle
     {
         $this->idPedido = $idPedido;
 
-        return $this;
     }
 
     /**
@@ -83,7 +82,6 @@ class Pedidos_detalle
     {
         $this->idProducto = $idProducto;
 
-        return $this;
     }
 
     /**

@@ -68,7 +68,6 @@ class Cambios_precio
     {
         $this->idProducto = $idProducto;
 
-        return $this;
     }
 
     /**

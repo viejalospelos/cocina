@@ -788,4 +788,9 @@ class Proveedores
     {
         return $this->estabilidadPrecios;
     }
+    
+    
+    public function _toString(){
+    	return $this->getNombre();
+    }
 }

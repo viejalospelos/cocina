@@ -27,7 +27,7 @@ class Albaranes_detalle
     private $idAlbaran;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cocina\ComprasBundle\Entity\Productos")
+     * @ORM\ManyToOne(targetEntity="Cocina\ComprasBundle\Entity\Pedidos_detalle")
      */
     private $idProducto;
 
@@ -80,7 +80,6 @@ class Albaranes_detalle
     {
         $this->idAlbaran = $idAlbaran;
 
-        return $this;
     }
 
     /**
@@ -99,11 +98,10 @@ class Albaranes_detalle
      * @param string $idProducto
      * @return Albaranes_detalle
      */
-    public function setIdProducto(\Cocina\ComprasBundle\Entity\Productos $idProducto)
+    public function setIdProducto(\Cocina\ComprasBundle\Entity\Pedidos_detalle $idProducto)
     {
         $this->idProducto = $idProducto;
 
-        return $this;
     }
 
     /**

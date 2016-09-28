@@ -3,6 +3,7 @@
 namespace Cocina\ComprasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Pedidos
@@ -68,7 +69,6 @@ class Pedidos
     {
         $this->fechaPedido = $fechaPedido;
 
-        return $this;
     }
 
     /**
@@ -145,5 +145,10 @@ class Pedidos
     public function getIdProveedor()
     {
         return $this->idProveedor;
+    }
+    
+    public function __construct()
+    {
+    	$this->id=new ArrayCollection();
     }
 }

@@ -107,7 +107,6 @@ class Albaranes
     {
         $this->idPedido = $idPedido;
 
-        return $this;
     }
 
     /**
@@ -119,4 +118,6 @@ class Albaranes
     {
         return $this->idPedido;
     }
+    
+    
 }

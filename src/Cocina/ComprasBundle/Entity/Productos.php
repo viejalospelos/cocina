@@ -24,7 +24,7 @@ class Productos
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_alta", type="date")
+     * @ORM\Column(name="fecha_alta", type="date", nullable=true)
      */
     private $fechaAlta;
 
@@ -96,12 +96,7 @@ class Productos
      */
     private $dun14;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ean128", type="string", length=255, nullable=true)
-     */
-    private $ean128;
+
 
     /**
      * @var string
@@ -331,7 +326,6 @@ class Productos
     {
         $this->idProveedor = $idProveedor;
 
-        return $this;
     }
 
     /**
@@ -549,28 +543,7 @@ class Productos
         return $this->dun14;
     }
 
-    /**
-     * Set ean128
-     *
-     * @param string $ean128
-     * @return Productos
-     */
-    public function setEan128($ean128)
-    {
-        $this->ean128 = $ean128;
 
-        return $this;
-    }
-
-    /**
-     * Get ean128
-     *
-     * @return string 
-     */
-    public function getEan128()
-    {
-        return $this->ean128;
-    }
 
     /**
      * Set formatoCompra
@@ -694,7 +667,6 @@ class Productos
     {
         $this->idAlmacen = $idAlmacen;
 
-        return $this;
     }
 
     /**
@@ -1188,5 +1160,10 @@ class Productos
     public function getPotenciadoresSabor()
     {
         return $this->potenciadoresSabor;
+    }
+    
+    
+    public function _toString(){
+    	return $this->getNombreProducto();
     }
 }
