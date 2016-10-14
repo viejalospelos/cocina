@@ -1,0 +1,59 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Index Proveedores{% endblock %}
+
+{% block body %}
+    <h1>Proveedores</h1>
+
+    <table>
+        <thead>
+            <tr>
+
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Descripcion</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Comercial</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proveedore in proveedores %}
+            <tr>
+                <td><a href="{{ path('proveedores_show', {'id':proveedore.id}) }}">{{ proveedore.nombre }}</a></td>
+                <td>{{ proveedore.categoriaProveedor }}</td>
+                <td>{{ proveedore.descripcion }}</td>
+                <td>{{ proveedore.telefonoPrincipal }}</td>
+                <td>{{ proveedore.emailPrincipal }}</td>
+                <td>{{ proveedore.agenteComercial }}</td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('proveedores_show', { 'id': proveedore.id }) }}">Ver datos completos</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('proveedores_edit', { 'id': proveedore.id }) }}">Editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    {{ simple_paginator_render('proveedores_index', null, {
+        'container_class': 'paginador',
+        'previousPageText': 'Anterior',
+        'nextPageText': 'Siguiente',
+        'currentClass': 'actual',
+        'firstPageText': 'Primera',
+        'lastPageText': 'Última'
+    }) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('proveedores_new') }}">Nuevo proveedor</a>
+        </li>
+    </ul>
+{% endblock %}

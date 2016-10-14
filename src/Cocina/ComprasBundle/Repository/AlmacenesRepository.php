@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class AlmacenesRepository extends EntityRepository
 {
+	public function queryTodosLosAlmacenes()
+	{
+		$em=$this->getEntityManager();
+		$consulta=$em->createQuery('
+				SELECT a 
+				FROM ComprasBundle:Almacenes a 
+				ORDER BY a.nombreAlmacen
+				');
+		return $consulta;
+	}
+	
+	public function findTodosLosAlmacenes()
+	{
+		return $this->queryTodosLosAlmacenes();
+	}
+	
+	
 }

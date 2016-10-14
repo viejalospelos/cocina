@@ -3,6 +3,7 @@
 namespace Cocina\ComprasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocina\ComprasBundle\Util\Util;
 
 /**
  * Productos
@@ -29,7 +30,9 @@ class Productos
     private $fechaAlta;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cocina\ComprasBundle\Entity\Proveedores")
+     * @var integer $idProveedor
+     * @ORM\ManyToOne(targetEntity="Proveedores")
+     * @ORM\JoinColumn(name="id_proveedor_id", referencedColumnName="id")
      */
     private $idProveedor;
 
@@ -345,6 +348,7 @@ class Productos
     public function setNombreProducto($nombreProducto)
     {
         $this->nombreProducto = $nombreProducto;
+        $this->slug=Util::getSlug($nombreProducto);
 
         return $this;
     }

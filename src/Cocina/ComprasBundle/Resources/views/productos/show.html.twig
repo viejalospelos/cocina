@@ -1,0 +1,169 @@
+{% extends 'backend.html.twig' %}
+
+{% block body %}
+    <h1>{{ producto.nombreProducto }}</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ producto.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de alta</th>
+                <td>{% if producto.fechaAlta %}{{ producto.fechaAlta|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ producto.nombreProducto }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ producto.tipoProducto }}</td>
+            </tr>
+
+            <tr>
+                <th>Marca</th>
+                <td>{{ producto.marca }}</td>
+            </tr>
+            <tr>
+                <th>Baja</th>
+                <td>{% if producto.baja %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fecha de baja</th>
+                <td>{% if producto.fechaBaja %}{{ producto.fechaBaja|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Notas</th>
+                <td>{{ producto.notas }}</td>
+            </tr>
+            <tr>
+                <th>Ean13</th>
+                <td>{{ producto.ean13 }}</td>
+            </tr>
+            <tr>
+                <th>Dun14</th>
+                <td>{{ producto.dun14 }}</td>
+            </tr>
+            <tr>
+                <th>Formato de compra</th>
+                <td>{{ producto.formatoCompra }}</td>
+            </tr>
+            <tr>
+                <th>Precio del formato de compra</th>
+                <td>{{ producto.precioFormatoCompra }}</td>
+            </tr>
+            <tr>
+                <th>Factor de conversion del formatocompra</th>
+                <td>{{ producto.factorConversionFormatoCompra }}</td>
+            </tr>
+            <tr>
+                <th>Precio por kg</th>
+                <td>{{ producto.precioKg }}</td>
+            </tr>
+            <tr>
+                <th>Estabilidad de precios</th>
+                <td>{% if producto.estabilidadPrecios %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fecha de homologacion</th>
+                <td>{% if producto.fechaHomologacion %}{{ producto.fechaHomologacion|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Responsable de homologacion</th>
+                <td>{{ producto.responsableHomologacion }}</td>
+            </tr>
+            <tr>
+                <th>Ficha técnica</th>
+                <td>{{ producto.rutaFichaTecnica }}</td>
+            </tr>
+            <tr>
+                <th>Documentos adjuntos</th>
+                <td>{{ producto.rutaDocumentosAdjuntos }}</td>
+            </tr>
+            <tr>
+                <th>Ingredientes declarados</th>
+                <td>{{ producto.ingredientesDeclarados }}</td>
+            </tr>
+            <tr>
+                <th>Gluten</th>
+                <td>{% if producto.gluten %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Leche</th>
+                <td>{% if producto.leche %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Huevo</th>
+                <td>{% if producto.huevo %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Soja</th>
+                <td>{% if producto.soja %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ápio</th>
+                <td>{% if producto.apio %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Pescado</th>
+                <td>{% if producto.pescado %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Crustaceos</th>
+                <td>{% if producto.crustaceos %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Moluscos</th>
+                <td>{% if producto.moluscos %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Frutos de cáscara</th>
+                <td>{% if producto.frutosDeCascara %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Cacahuete</th>
+                <td>{% if producto.cacahuete %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Mostaza</th>
+                <td>{% if producto.mostaza %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sésamo</th>
+                <td>{% if producto.sesamo %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sulfitos</th>
+                <td>{% if producto.so2Sulfito %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Altramuces</th>
+                <td>{% if producto.altramuces %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nitritos/Nitratos</th>
+                <td>{% if producto.no2Nitrito %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Potenciadores de sabor</th>
+                <td>{% if producto.potenciadoresSabor %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('productos_index') }}">Volver a lista</a>
+        </li>
+        <li>
+            <a href="{{ path('productos_edit', { 'id': producto.id }) }}">Editar</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Borrar">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

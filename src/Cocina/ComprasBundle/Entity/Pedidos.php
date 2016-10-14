@@ -151,4 +151,5 @@ class Pedidos
     {
     	$this->id=new ArrayCollection();
     }
+    
 }

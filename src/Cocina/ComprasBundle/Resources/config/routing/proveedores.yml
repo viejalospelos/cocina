@@ -1,0 +1,24 @@
+proveedores_index:
+    path:     /
+    defaults: { _controller: "ComprasBundle:Proveedores:index" }
+    methods:  GET
+
+proveedores_show:
+    path:     /{id}/show
+    defaults: { _controller: "ComprasBundle:Proveedores:show" }
+    methods:  GET
+
+proveedores_new:
+    path:     /new
+    defaults: { _controller: "ComprasBundle:Proveedores:new" }
+    methods:  [GET, POST]
+
+proveedores_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ComprasBundle:Proveedores:edit" }
+    methods:  [GET, POST]
+
+proveedores_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ComprasBundle:Proveedores:delete" }
+    methods:  DELETE

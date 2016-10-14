@@ -22,6 +22,8 @@ class AppKernel extends Kernel
             new Cocina\NutricionBundle\NutricionBundle(),
             new Cocina\UsuarioBundle\UsuarioBundle(),
             new Cocina\CalidadBundle\CalidadBundle(),
+        	new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+        	new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

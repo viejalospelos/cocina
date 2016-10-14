@@ -1,0 +1,66 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Index Productos{% endblock %}
+{#Hay que meterle un if para que si el pruducto está dado de baja, quede marcado con algún color o no se vea#}
+{#En la segunda columna tiene que aparecer el proveedor al que pertenece#}
+{#Para dar de alta un producto se tiene que hacer a través del proveedor, por lo que la acción NEW tiene que desaparecer#}
+{% block body %}
+    <h1>Lista de Productos</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombreproducto</th>
+                <th>Proveedor</th>
+                <th>Tipo</th>
+                <th>Marca</th>
+                <th>Notas</th>
+                <th>Formato</th>
+                <th>Precio/formato</th>
+                <th>Precio/kg</th>
+                <th>Ingredientes</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for producto in productos %}
+            <tr>
+                <td><a href="{{ path('productos_show', { 'id': producto.id }) }}">{{ producto.nombreProducto }}</a></td>
+                <td><a href="{{ path('proveedores_show', { 'id': producto.idProveedor.id }) }}">{{ producto.idProveedor.nombre }}</a></td>
+                {#<td>{{ producto.idProveedor.nombre }}</td> #}
+                <td>{{ producto.tipoProducto }}</td>
+                <td>{{ producto.marca }}</td>
+                <td>{{ producto.notas }}</td>
+                <td>{{ producto.formatoCompra }}</td>
+                <td>{{ producto.precioFormatoCompra }} €</td>
+                <td>{{ producto.precioKg }} €</td>
+                <td>{{ producto.ingredientesDeclarados }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('productos_show', { 'id': producto.id }) }}">Ver datos completos</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('productos_edit', { 'id': producto.id }) }}">Editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   
+    {{ simple_paginator_render('productos_index', null, {
+        'container_class': 'paginador',
+        'previousPageText': 'Anterior',
+        'nextPageText': 'Siguiente',
+        'currentClass': 'actual',
+        'firstPageText': 'Primera',
+        'lastPageText': 'Última'
+    }) }}
+    
+    {#<ul>
+        <li>
+            <a href="{{ path('productos_new') }}">Nuevo producto</a>
+        </li>
+    </ul>#}
+{% endblock %}

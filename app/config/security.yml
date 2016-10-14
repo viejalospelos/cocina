@@ -1,24 +1,35 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
-    providers:
-        in_memory:
-            memory: ~
-
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+        frontend:
+            pattern: ^/*
+            anonymous:    ~
+            provider:  usuarios
+            #http_basic: ~
+            form_login:
+                login_path: usuario_login
+                check_path: usuario_login_check 
+                default_target_path: /home/
+                always_use_default_target_path: true             
+            logout:
+                path:       usuario_logout
+                target:     /home
+            remember_me:
+                key:    1234
+                lifetime:    3600
+                    
+                
+    access_control:
+        - {path: ^/usuario/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - {path: ^/*, roles: ROLE_USUARIO}
+        
+    providers:
+        usuarios:
+            entity: { class: Cocina\UsuarioBundle\Entity\Usuarios, property: nick }
+            #memory:
+               # users:
+                    #- { name: admin, password: 1234, roles: ROLE_USUARIO }   
+            
+    encoders:
+            Cocina\UsuarioBundle\Entity\Usuarios:    plaintext
+            Symfony\Component\Security\Core\User\User: plaintext

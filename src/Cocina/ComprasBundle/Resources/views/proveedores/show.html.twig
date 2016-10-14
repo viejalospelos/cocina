@@ -1,0 +1,147 @@
+{% extends 'backend.html.twig' %}
+
+{% block body %}
+    <h1>Proveedores</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ proveedore.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ proveedore.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Categoria</th>
+                <td>{{ proveedore.categoriaProveedor }}</td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>{{ proveedore.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Domicilio social</th>
+                <td>{{ proveedore.domicilioSocial }}</td>
+            </tr>
+            <tr>
+                <th>Telefono principal</th>
+                <td>{{ proveedore.telefonoPrincipal }}</td>
+            </tr>
+            <tr>
+                <th>Email principal</th>
+                <td>{{ proveedore.emailPrincipal }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ proveedore.fax }}</td>
+            </tr>
+            <tr>
+                <th>Web</th>
+                <td>{{ proveedore.web }}</td>
+            </tr>
+            <tr>
+                <th>Registro sanitario</th>
+                <td>{{ proveedore.registroSanitario }}</td>
+            </tr>
+            <tr>
+                <th>Cif</th>
+                <td>{{ proveedore.cif }}</td>
+            </tr>
+            <tr>
+                <th>Dia de entrega</th>
+                <td>{{ proveedore.diaDeEntrega }}</td>
+            </tr>
+            <tr>
+                <th>Antelacion de pedido</th>
+                <td>{{ proveedore.antelacionDePedido }}</td>
+            </tr>
+            <tr>
+                <th>Agente comercial</th>
+                <td>{{ proveedore.agenteComercial }}</td>
+            </tr>
+            <tr>
+                <th>Telefono agente comercial</th>
+                <td>{{ proveedore.telefonoAgenteComercial }}</td>
+            </tr>
+            <tr>
+                <th>Email agente comercial</th>
+                <td>{{ proveedore.emailAgenteComercial }}</td>
+            </tr>
+            <tr>
+                <th>Responsable calidad</th>
+                <td>{{ proveedore.responsableCalidad }}</td>
+            </tr>
+            <tr>
+                <th>Telefono responsable calidad</th>
+                <td>{{ proveedore.telefonoResponsableCalidad }}</td>
+            </tr>
+            <tr>
+                <th>Email responsable calidad</th>
+                <td>{{ proveedore.emailResponsableCalidad }}</td>
+            </tr>
+            <tr>
+                <th>Notas</th>
+                <td>{{ proveedore.notas }}</td>
+            </tr>
+            <tr>
+                <th>Fecha homologacion</th>
+                <td>{% if proveedore.fechaHomologacion %}{{ proveedore.fechaHomologacion|date('d-m-Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Responsable homologacion</th>
+                <td>{{ proveedore.responsableHomologacion }}</td>
+            </tr>
+            <tr>
+                <th>Ruta registro sanitario</th>
+                <td>{{ proveedore.rutaRegistroSanitario }}</td>
+            </tr>
+            <tr>
+                <th>Ruta documentos adjuntos</th>
+                <td>{{ proveedore.rutaDocumentosAdjuntos }}</td>
+            </tr>
+            <tr>
+                <th>Estabilidad precios</th>
+                <td>{% if proveedore.estabilidadPrecios %}Si{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('proveedores_index') }}">Volver a lista</a>
+        </li>
+        <li>
+            <a href="{{ path('proveedores_edit', { 'id': proveedore.id }) }}">Editar</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Borrar">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    
+    <h2>Resumen de artículos dados de alta actualmente</h2>
+    
+    <aside>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Marca</th>                
+                </tr>
+        	</thead>  
+        	<tbody>
+        		{% for producto in productos %}
+        		<tr>       		
+            		<td><a href="{{ path('productos_show', { 'id': producto.id }) }}">{{ producto.nombreProducto }}</a></td>
+            		<td>{{ producto.tipoProducto }}</td>
+            		<td>{{ producto.marca }}</td>
+            	</tr>	
+        		{% endfor %}
+        	</tbody> 
+        </table>	     
+    </aside>
+{% endblock %}

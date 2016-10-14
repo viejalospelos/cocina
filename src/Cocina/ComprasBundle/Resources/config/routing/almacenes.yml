@@ -1,0 +1,24 @@
+almacenes_index:
+    path:     /
+    defaults: { _controller: "ComprasBundle:Almacenes:index" }
+    methods:  GET
+
+almacenes_show:
+    path:     /{id}/show
+    defaults: { _controller: "ComprasBundle:Almacenes:show" }
+    methods:  GET
+
+almacenes_new:
+    path:     /new
+    defaults: { _controller: "ComprasBundle:Almacenes:new" }
+    methods:  [GET, POST]
+
+almacenes_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ComprasBundle:Almacenes:edit" }
+    methods:  [GET, POST]
+
+almacenes_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ComprasBundle:Almacenes:delete" }
+    methods:  DELETE

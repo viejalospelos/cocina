@@ -1,0 +1,16 @@
+{% extends 'backend.html.twig' %}
+
+{% block body %}
+    <h1>Nuevo almacén</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Crear" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('almacenes_index') }}">Volver a lista</a>
+        </li>
+    </ul>
+{% endblock %}

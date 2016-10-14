@@ -3,10 +3,10 @@
 {% block stylesheets %}
 	<link href="{{ asset('bundles/compras/css/normalizar.css') }}"rel="stylesheet" type="text/css" />
 	<link href="{{ asset('bundles/compras/css/comun.css') }}"rel="stylesheet" type="text/css" />
-	<link href="{{ asset('bundles/compras/css/frontend.css') }}"rel="stylesheet" type="text/css" />
+	<link href="{{ asset('bundles/compras/css/crud.css') }}"rel="stylesheet" type="text/css" />
 {% endblock %} 
 {% block javascripts %}{% endblock %} 
-{% block body %}
+{% block body%}
 <header>
     <h1><a href="#">COCINA</a></h1>
     <nav>
@@ -23,10 +23,10 @@
 </article>
 <aside>
     {% block aside %}
-    	        {% if is_granted('ROLE_USUARIO') %}
-        		<p>Conectado como {{ app.user.nombre ~ '' ~ app.user.apellidos }}<p>
-        		<a href="{{path('usuario_logout')}}">Cerrar sesión</a>
-	        {% endif %}	
+    	<section id="login">
+		{# {{ render(controller('UsuarioBundle:Default:cajaLogin')) }} #}
+		LOGIN
+		</section>
     {% endblock %}
 </aside>
 {% endblock %}

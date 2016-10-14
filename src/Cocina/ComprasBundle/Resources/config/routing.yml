@@ -1,3 +1,15 @@
+compras_productos:
+    resource: "@ComprasBundle/Resources/config/routing/productos.yml"
+    prefix:   /productos
+
+compras_almacenes:
+    resource: "@ComprasBundle/Resources/config/routing/almacenes.yml"
+    prefix:   /almacenes
+
+compras_proveedores:
+    resource: "@ComprasBundle/Resources/config/routing/proveedores.yml"
+    prefix:   /proveedores
+
 compras_homepage:
     path:     /
     defaults: { _controller: ComprasBundle:Default:index }

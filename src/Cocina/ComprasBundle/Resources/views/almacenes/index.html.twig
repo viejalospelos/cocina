@@ -1,0 +1,47 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Index Almacenes{% endblock %}
+
+{% block body %}
+    <h1>Lista de Almacenes</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for almacene in almacenes %}
+            <tr>
+                <td><a href="{{ path('almacenes_show', { 'id': almacene.id }) }}">{{ almacene.nombreAlmacen }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('almacenes_show', { 'id': almacene.id }) }}">Ver datos completos</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('almacenes_edit', { 'id': almacene.id }) }}">Editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    {{ simple_paginator_render('almacenes_index', null, {
+       'container_class': 'paginador',
+       'previousPageText': 'Anterior',
+       'nextPageText': 'Siguiente',
+       'currentClass': 'actual',
+       'firstPageText': 'Primera',
+       'lastPageText': 'Última'
+    }) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('almacenes_new') }}">Crear nuevo almacén</a>
+        </li>
+    </ul>
+{% endblock %}

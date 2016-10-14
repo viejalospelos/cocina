@@ -3,6 +3,7 @@
 namespace Cocina\ComprasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocina\ComprasBundle\Util\Util;
 
 /**
  * Proveedores
@@ -216,6 +217,7 @@ class Proveedores
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        $this->slug=Util::getSlug($nombre);
 
         return $this;
     }

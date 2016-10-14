@@ -12,12 +12,16 @@
 <body id="{% block id '' %}">
     <div id="contenedor">
         {% block body %}{% endblock %}
+        
+        
+        
+        
         <footer>
             &copy; {{ 'now' | date('Y') }} - Cocina
-            <a href="#">ENLACE 1</a>
-            <a href="#">ENLACE 2</a>
-            <a href="#">ENLACE 3</a>
-            <a href="#">ENLACE 4</a>
+            <a href="{{ path('proveedores_index') }}">Proveedores</a>
+            <a href="{{ path('productos_index') }}">Productos</a>
+            <a href="{{ path('almacenes_index') }}">Almacenes</a>
+            <a href="#">EasyAdmin</a>
 
         </footer>
         {% block javascripts %}{% endblock %}

@@ -1,3 +1,9 @@
-usuario_homepage:
-    path:     /usuario
-    defaults: { _controller: UsuarioBundle:Default:index }
+usuario_login:
+    path:    /login
+    defaults: {_controller: UsuarioBundle:Default:login }
+    
+usuario_login_check:
+    path:    /login_check
+    
+usuario_logout:
+    path:    /logout        
