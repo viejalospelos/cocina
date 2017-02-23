@@ -119,5 +119,9 @@ class Albaranes
         return $this->idPedido;
     }
     
+    public function __toString(){
+    	return $this->id;
+    }
+    
     
 }

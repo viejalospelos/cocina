@@ -1,0 +1,91 @@
+{% extends 'backend.html.twig' %}
+
+{% block body %}
+    <h1>Pedido a {{ pedido.idProveedor.nombre }}</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pedido.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de pedido</th>
+                <td>{% if pedido.fechaPedido %}{{ pedido.fechaPedido|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fecha de entregaprevista</th>
+                <td>{% if pedido.fechaEntregaPrevista %}{{ pedido.fechaEntregaPrevista|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Responsable de compra</th>
+                <td>{{ pedido.responsableCompra }}</td>
+            </tr>
+        </tbody>
+    </table>
+Aquí tiene que aparecer la tabla pedidos_detalle
+	<table class="tablesorter">
+		<thead>
+			<th>Producto</th>
+			<th>Cantidad pedida</th>
+			<th>Observaciones</th>			
+		</thead>
+
+		<tbody>
+			{% for pedidosDetalle in pedidosDetalles %}
+			<tr>
+				<td>{{ pedidosDetalle.idProducto.nombreProducto }}</td>
+				<td>{{ pedidosDetalle.cantidadPedida }}</td>
+				<td>{{ pedidosDetalle.observaciones }}</td>	
+			<tr>			
+			{% endfor %}
+		</tbody>
+		
+	</table>
+    <ul>
+        <li>
+            <a href="{{ path('pedidos_index') }}">Volver a lista</a>
+        </li>
+        {% if pedido.entregado==0 %}
+    		<li>
+                <a href="#">Procesar Albarán</a>
+            </li>
+        {% else %} 
+            <li>
+                <a href="#">Ver Albarán</a>
+            </li>
+        {% endif %}
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Borrar">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    
+    <div id="articulos"></div>
+	<a id="link_articulos" href="#">Cargar articulos</a
+    
+   <li> Cada producto (detalles_producto) tiene que tener un booleano para entregado y/n </li>
+    <li>Si en albaranes se marca que ha llegado todo el producto, el booleano de detalles_producto se marca como yes</li>
+    <li>Si hay una entrega parcial, se queda en espera de que entre la cantidad total en otro momento a menos que marquemos la opción "última entrega"</li>
+    <li>Cuando todos los productos están marcados como recibidos (booleano yes), el pedido se marca como entregado en otro booleano que tiene que tener pedidos</li>
+    
+    <block javascripts>
+        <script>
+
+		$(document).ready(function(){
+            $('#link_articulos').click(function(){
+                    $('#articulos').load('{{ path('pedidos_procesados') }}');
+            });
+		});
+
+		</script>
+		
+		<script>
+		$(document).ready(function(){
+            $('table').tablesorter();
+            //$("table.tablesorter tbody tr:odd").addClass("odd");
+		});
+		</script>
+    <endblock>
+{% endblock %}

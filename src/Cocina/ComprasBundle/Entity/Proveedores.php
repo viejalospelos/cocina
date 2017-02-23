@@ -792,7 +792,9 @@ class Proveedores
     }
     
     
-    public function _toString(){
-    	return $this->getNombre();
+    public function __toString(){
+    	return $this->nombre;
     }
+    
+    
 }

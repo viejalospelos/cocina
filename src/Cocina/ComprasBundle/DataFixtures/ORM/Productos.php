@@ -304,8 +304,6 @@ class Producto extends AbstractFixture implements OrderedFixtureInterface
 		
 	}
 	
-
-	
 	
 
 }

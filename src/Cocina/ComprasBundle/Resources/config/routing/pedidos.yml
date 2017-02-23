@@ -1,0 +1,45 @@
+pedidos_index:
+    path:     /
+    defaults: { _controller: "ComprasBundle:Pedidos:index" }
+    methods:  GET
+    
+pedidos_procesados:
+    path:     /pedidos_procesados
+    defaults: { _controller: "ComprasBundle:Pedidos:index" }
+    methods:  GET    
+
+pedidos_show:
+    path:     /{id}/show
+    defaults: { _controller: "ComprasBundle:Pedidos:show" }
+    methods:  GET
+
+pedidos_new:
+    path:     /new
+    defaults: { _controller: "ComprasBundle:Pedidos:new" }
+    methods:  [GET, POST]
+
+#pedidos_edit:
+#    path:     /{id}/edit
+#    defaults: { _controller: "ComprasBundle:Pedidos:edit" }
+#    methods:  [GET, POST]
+
+pedidos_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ComprasBundle:Pedidos:delete" }
+    methods:  DELETE
+
+#Ruta para filtrar productos por proveedor para la llamada ajax de /new
+productos:
+    path:     /select_productos
+    defaults: { _controller: "ComprasBundle:Pedidos:selectProductos" }  
+
+#Prueba para la nueva versión de pedidos    
+pedidos_new2:
+    path:     /new2
+    defaults: { _controller: "ComprasBundle:Pedidos:new2" }
+    methods:  [GET, POST]    
+    
+pedidosDetalle_new2:
+    path:     /DetalleNew2
+    defaults: { _controller: "ComprasBundle:Pedidos:detallesNew2" }
+    methods:  [GET, POST]      

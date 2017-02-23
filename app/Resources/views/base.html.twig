@@ -7,6 +7,8 @@
     {% block stylesheets %}{% endblock %}
     {% block rss %}{% endblock %}
 	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	<script src="{{ asset('bundles/compras/js/jquery.min.js') }}"></script>
+	<script src="{{ asset('bundles/compras/js/jquery.tablesorter.min.js') }}"></script>
 </head>
 
 <body id="{% block id '' %}">
@@ -22,6 +24,7 @@
             <a href="{{ path('productos_index') }}">Productos</a>
             <a href="{{ path('almacenes_index') }}">Almacenes</a>
             <a href="#">EasyAdmin</a>
+            <a href="{{ path('pedidos_index') }}">Pedidos</a>
 
         </footer>
         {% block javascripts %}{% endblock %}

@@ -44,6 +44,12 @@ class Pedidos_detalle
      * @ORM\Column(name="observaciones", type="text", nullable=true)
      */
     private $observaciones;
+    
+    /**
+     * @var bool
+     * @ORM\Column(name="entregado", type="boolean", nullable=true)
+     */
+    private $entregado;
 
 
     /**
@@ -138,5 +144,31 @@ class Pedidos_detalle
     public function getObservaciones()
     {
         return $this->observaciones;
+    }
+    
+    /**
+     * Set entregado
+     * 
+     * @param boolean $entregado
+     * @return Pedidos_detalle
+     */
+    public function setEntregado($entregado)
+    {
+    	$this->entregado=$entregado;
+    	return $this;
+    }
+    
+    /**
+     * Get entregado
+     * 
+     * @return boolean
+     */
+    public function getEntregado()
+    {
+    	return $this->entregado;
+    }
+    
+    public function __toString(){
+    	return $this->id;
     }
 }

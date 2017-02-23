@@ -12,4 +12,31 @@ use Doctrine\ORM\EntityRepository;
  */
 class PedidosRepository extends EntityRepository
 {
+	public function findPedidosProcesados()
+	{
+		$em=$this->getEntityManager();
+		$consulta=$em->createQuery('
+				SELECT p, o
+				FROM ComprasBundle:Pedidos p
+				JOIN p.idProveedor o
+				WHERE p.entregado = :entregado
+				ORDER BY p.fechaPedido ASC
+				');
+		$consulta->setParameter('entregado', 1);
+		return $consulta;
+	}
+	
+	public function findPedidosPendientes()
+	{
+		$em=$this->getEntityManager();
+		$consulta=$em->createQuery('
+				SELECT p, o
+				FROM ComprasBundle:Pedidos p
+				JOIN p.idProveedor o
+				WHERE p.entregado = :entregado
+				ORDER BY p.fechaPedido ASC
+				');
+		$consulta->setParameter('entregado', 0);
+		return $consulta;
+	}
 }

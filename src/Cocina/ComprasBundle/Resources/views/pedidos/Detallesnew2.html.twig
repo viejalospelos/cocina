@@ -1,0 +1,61 @@
+{% extends 'backend.html.twig' %}
+
+{% block body %}
+    <h1>Crear pedido</h1>
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+  
+        <input type="submit" value="Enviar pedido" />
+    {{ form_end(form) }}
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        {{ flashMessage }}
+    {% endfor %}
+    
+    <p>Fecha de pedido: {{ fechaPedido | date ("d/m/Y") }} a las {{ fechaPedido | date ("G:i:s") }}</p>
+    <p>Fecha de entrega aproximada: {{ fechaEntrega | date("d/m/Y")}}</p> 
+        
+    <ul>
+        <li>
+            <a href="{{ path('pedidos_index') }}">Volver a lista</a>
+        </li>
+    </ul>
+
+	Se envía un mail al proveedor al procesar   
+    
+    {% block javascripts %} 
+    
+  {# <script>
+   
+            $(function(){
+            $("#cocina_comprasbundle_pedidos_id").change(function(){
+                var data = {
+                    proveedores_id: $(this).val()
+                };
+                
+
+                $.ajax({
+                    type: 'post',
+                    url: '{{ path("productos") }}',
+                    data: data,
+                    success: function(data) {
+
+                        var $productos_selector = $('#cocina_comprasbundle_pedidos_detalles');
+
+                        $productos_selector.html('<option>Productos</option>');
+                        console.log(data);
+
+                        for (var i=0, total = data.length; i < total; i++) {
+
+                            $productos_selector.append('<option value="' + data[i].id + '">' + data[i].nombreProducto + '</option>');
+                        }                     
+                    }
+                });
+            });
+        });   
+    </script>  #}
+    
+
+    {% endblock %}
+{% endblock %}

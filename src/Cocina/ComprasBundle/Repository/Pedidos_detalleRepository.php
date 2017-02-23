@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class Pedidos_detalleRepository extends EntityRepository
 {
+	public function findPedidosDetallePorIdPedido($id)
+	{
+		$em=$this->getEntityManager();
+		$consulta=$em->createQuery('
+				SELECT p
+				FROM ComprasBundle:Pedidos_detalle p
+				WHERE p.idPedido = :id
+				ORDER BY p.cantidadPedida ASC
+				');
+		$consulta->setParameter('id', $id);
+		return $consulta;
+	}
 }

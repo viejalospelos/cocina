@@ -263,5 +263,9 @@ class Usuarios implements UserInterface
     {
         return $this->role;
     }
+    
+    public function __toString(){
+    	return $this->nombre;
+    }
 }
 

@@ -205,4 +205,8 @@ class Albaranes_detalle
     {
         return $this->observacionesDevolucion;
     }
+    
+    public function __toString(){
+    	return $this->id;
+    }
 }

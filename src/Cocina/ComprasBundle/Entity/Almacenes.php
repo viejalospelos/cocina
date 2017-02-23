@@ -63,7 +63,7 @@ class Almacenes
     }
     
     
-    public function _toString(){
+    public function __toString(){
     	return $this->getNombreAlmacen();
     }
 }

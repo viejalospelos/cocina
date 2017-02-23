@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Cocina\CalidadBundle\CalidadBundle(),
         	new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
         	new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
+        	new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

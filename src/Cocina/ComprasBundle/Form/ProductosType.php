@@ -15,6 +15,8 @@ class ProductosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+        ->add('idProveedor')
+        ->add('idAlmacen')
             ->add('fechaAlta', 'date')
             ->add('nombreProducto')
             ->add('tipoProducto')

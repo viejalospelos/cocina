@@ -4,6 +4,8 @@ namespace Cocina\ComprasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Pedidos
@@ -47,6 +49,12 @@ class Pedidos
      * @ORM\ManyToOne(targetEntity="Cocina\ComprasBundle\Entity\Proveedores")
      */
     private $idProveedor;
+    
+    /**
+     * @var bool
+     * @ORM\Column(name="entregado", type="boolean", nullable=true)
+     */
+    private $entregado;
 
 
     /**
@@ -134,12 +142,10 @@ class Pedidos
     {
         $this->idProveedor = $idProveedor;
 
-        return $this;
     }
 
     /**
      * Get idProveedor
-     *
      * @return string 
      */
     public function getIdProveedor()
@@ -147,9 +153,73 @@ class Pedidos
         return $this->idProveedor;
     }
     
+    /**
+     * Set entregado
+     *
+     * @param boolean $entregado
+     * @return Pedidos_detalle
+     */
+    public function setEntregado($entregado)
+    {
+    	$this->entregado=$entregado;
+    	return $this;
+    }
+    
+    /**
+     * Get entregado
+     *
+     * @return boolean
+     */
+    public function getEntregado()
+    {
+    	return $this->entregado;
+    }
+    
+    
+//     public function __construct()
+//     {
+//     	$this->id=new ArrayCollection();
+//     }
+    
+    public function __toString(){
+    	//return $this->id;
+    	return (string) $this->getId();
+    }
+    /*----------- IMPORTANTE PARA CREAR FORMULARIO EMBEBIDO------------------------ */
+    /**
+     * @Assert\Type(type="Cocina\ComprasBundle\Entity\Pedidos_detalle")
+     * @Assert\Valid()
+     */
+    protected $detalles;
+    
+    public function getDetalles()
+    {
+    	return $this->detalles;
+    }
+    
+    public function setDetalles(\Cocina\ComprasBundle\Entity\Pedidos_detalle $detalles = null)
+    {
+    	$this->detalles = $detalles;
+    }	
+    /*------------------------------------------------------------------------------------*/
+    
+    protected $camposPedido;
+    
     public function __construct()
     {
-    	$this->id=new ArrayCollection();
+    	$this->camposPedido=new ArrayCollection();
+    }
+    public function setCamposPedido(Collection $camposPedido)
+    {
+    	$this->camposPedido=$camposPedido;
+    	foreach ($camposPedido as $campoPedido){
+    		$campoPedido->setPedidos($this);
+    	}
+    }
+    
+    public function getCamposPedido()
+    {
+    	return $this->camposPedido;
     }
     
 }

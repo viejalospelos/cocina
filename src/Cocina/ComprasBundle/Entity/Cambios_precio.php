@@ -148,4 +148,8 @@ class Cambios_precio
     {
         return $this->fechaCambioPrecio;
     }
+    
+    public function __toString(){
+    	return $this->id;
+    }
 }

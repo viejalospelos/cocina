@@ -1167,7 +1167,7 @@ class Productos
     }
     
     
-    public function _toString(){
-    	return $this->getNombreProducto();
+    public function __toString(){
+    	return $this->nombreProducto;
     }
 }

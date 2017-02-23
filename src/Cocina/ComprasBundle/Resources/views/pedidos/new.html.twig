@@ -1,0 +1,156 @@
+{% extends 'backend.html.twig' %}
+
+{% block body %}
+    <h1>Crear pedido</h1>
+
+ {#   {{ form_start(form) }}
+        <div class="campoPedido" data-prototype="{{ form_widget(form.camposPedido.vars.prototype)|e('html_attr') }}">
+        <button type="button" class="close">&times;</button>
+        {{ form_widget(form) }}
+        </div>
+        <input type="submit" value="Enviar" />
+   
+    {{ form_end(form) }}   #}
+    
+    
+    
+    
+{% form_theme form _self %}    
+{% block _cocina_comprasbundle_pedidosPadre_camposPedido_entry_row %}
+{% spaceless %}
+{{ form_start(form) }}
+     <div id="FormPedido" class="campoPedido" data-prototype="{{ form_widget(form.camposPedido.vars.prototype)|e('html_attr') }}">
+        <button type="button" class="close">&times;</button>
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+    <input type="submit" value="Enviar" />
+ {{ form_end(form) }}   
+{% endspaceless %}
+{% endblock %}
+ 
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        {{ flashMessage }}
+    {% endfor %}   
+
+        
+    <ul>
+        <li>
+            <a href="{{ path('pedidos_index') }}">Volver a lista</a>
+        </li>
+    </ul>
+
+	Se envía un mail al proveedor al procesar   
+    
+    {% block javascripts %} 
+    
+   <script>
+        function addTagForm(collectionHolder) {
+            // Get the data-prototype explained earlier
+            var prototype = collectionHolder.data('prototype');
+        
+            // get the new index
+            var index = collectionHolder.data('index');
+        
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+        
+            // increase the index with one for the next item
+            collectionHolder.data('index', index + 1);
+        
+            // Display the form in the page in an li, before the "Add a address" link li
+            var $newFormLi = $('<div></div>').append(newForm);
+            collectionHolder.append($newFormLi);
+        }
+		
+		
+        
+           // Get the div that holds the collection of addresses
+           var collectionHolder = $('div.campoPedido');
+        
+           // setup an "add a address" link
+           var $newLinkLi = $('<a href="#"> Añadir linea de pedido</a>');
+        
+
+
+        $(function(){
+        
+            // add the "add a address" anchor and li to the addresses div
+            collectionHolder.parent().append($newLinkLi);
+        
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            collectionHolder.data('index', collectionHolder.find(':input').length);
+        
+            $newLinkLi.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+        
+                // add a new address form (see next code block)
+                addTagForm(collectionHolder);
+            });
+        });
+        
+
+
+    </script> 
+    
+ {#   FALTA FINALIZARLO
+ 	<script>
+   		$(document).on('change', '.proveedor_selector', function()
+			var $this = $(this);
+			var data={proveedor_id: $this.val()};
+
+			$.ajax({
+				type:'post',
+				url: '{{path("productos")}}',
+				data: data,
+				success: function(data){
+					var $producto_selector = $this.closet('.campoPedido')
+				}
+			});
+
+   		}); 
+    </script>   #}
+    
+
+
+{# ESTE CÓDIGO FUNCIONABA ANTES DE INTEGRAR LA COLECCIÓN
+    <script>
+   
+            $(function(){
+            $("#cocina_comprasbundle_pedidosPadre_camposPedido_2_idProveedor").change(function(){
+                var data = {
+                    proveedores_id: $(this).val()
+                };
+                console.log(data);
+                
+
+                $.ajax({
+                    type: 'post',
+                    url: '{{ path("productos") }}',
+                    data: data,
+                    success: function(data) {
+
+                        var $productos_selector = $('#cocina_comprasbundle_pedidosPadre_camposPedido_2_idProducto');
+
+                        $productos_selector.html('<option>Productos</option>');
+                        console.log(data);
+
+                        for (var i=0, total = data.length; i < total; i++) {
+
+                            $productos_selector.append('<option value="' + data[i].id + '">' + data[i].nombreProducto + '</option>');
+                        }                     
+                    }
+                });
+            });
+        });   
+    </script> 
+
+#}
+    
+
+    {% endblock %}
+{% endblock %}

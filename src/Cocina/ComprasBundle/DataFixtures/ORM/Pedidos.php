@@ -35,6 +35,7 @@ class Pedido extends AbstractFixture implements OrderedFixtureInterface
 			$pedido->setResponsableCompra('Sr.Quality Ruiz');
 			//$pedido->setIdProveedor($this->getReference("proveedorNumero".mt_rand(1,50)));
 			$pedido->setIdProveedor($proveedor);
+			$pedido->setEntregado(0);
 			
 			//$this->addReference('pedidoNumero'.$n, $pedido);
 			$manager->persist($pedido);

@@ -30,6 +30,7 @@ class PedidoDetalle extends AbstractFixture implements OrderedFixtureInterface
 				$pedidoDetalle->setIdProducto($productos);
 				$pedidoDetalle->setCantidadPedida(mt_rand(5,15));
 				$pedidoDetalle->setObservaciones($this->verborrea());
+				$pedidoDetalle->setEntregado(0);
 				
 				$this->addReference('pedidoDetalle'.$n, $pedidoDetalle);
 				$n++;

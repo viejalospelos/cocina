@@ -27,7 +27,7 @@ class Proveedor extends AbstractFixture implements OrderedFixtureInterface
 			$proveedor->setTelefonoPrincipal((string)rand(958000000,958999999));
 			$proveedor->setEmailPrincipal($proveedor->getNombre().'@correo.com');
 			$proveedor->setFax((string)rand(958000000,958999999));
-			$proveedor->setWeb($proveedor->getNombre().'.com');
+			$proveedor->setWeb('www.'.$proveedor->getNombre().'.com');
 			$proveedor->setRegistroSanitario(rand(0,99).'.'.rand(000000,999999).'/'.array_rand(array_flip(array('GR','MA','TO','BA','SE','AV','V','A')),1));
 			
 			$proveedor->setCif($this->letraAbecedario().'/'.rand(000000,999999));
@@ -35,10 +35,10 @@ class Proveedor extends AbstractFixture implements OrderedFixtureInterface
 			$proveedor->setantelacionDePedido($this->antelacionPedido());
 			$proveedor->setAgenteComercial($this->nombreApellidos());
 			$proveedor->setTelefonoAgenteComercial((string)rand(958000000,958999999));
-			$proveedor->setEmailAgenteComercial($proveedor->getAgenteComercial().'@correo.com');
+			$proveedor->setEmailAgenteComercial($this->formatoMail($proveedor->getAgenteComercial()).'@correo.com');
 			$proveedor->setResponsableCalidad($this->nombreApellidos());
 			$proveedor->setTelefonoResponsableCalidad((string)rand(958000000,958999999));
-			$proveedor->setEmailResponsableCalidad($proveedor->getResponsableCalidad().'@correo.com');
+			$proveedor->setEmailResponsableCalidad($this->formatoMail($proveedor->getResponsableCalidad()).'@correo.com');
 			$proveedor->setNotas($this->verborrea());
 			$proveedor->setFechaHomologacion($this->fechaAleatoria());
 			$proveedor->setResponsableHomologacion($this->nombreApellidos());
@@ -173,6 +173,15 @@ class Proveedor extends AbstractFixture implements OrderedFixtureInterface
 		$objDT = \DateTime::createFromFormat('Y-m-d H:i:s', $str);
 		return $objDT;
 		
+	}
+	
+	/*
+	 * Formatear emails a partir de nombre+apellidos
+	 */
+	private function formatoMail($cadena)
+	{
+		$str=preg_replace('[\s+]', '', strtolower($cadena));
+		return $str;
 	}
 
 }
